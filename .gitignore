@@ -40,5 +40,5 @@ Thumbs.db
 *.pyc
 
 # Don't include original data - CSV and XLSX files
-.csv
-.xlsx
+*.csv
+*.xlsx
