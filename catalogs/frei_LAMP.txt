@@ -1,0 +1,14 @@
+# LAMP Results from Frei data
+# Start Date | End Date | LAMP Results | Gubler-Thomas Index | Treatments 
+3/11/2014  3/18/2014  0  100  None
+3/18/2014  3/26/2014  0  100  None
+3/26/2014  4/2/2014   0  80   None
+4/2/2014   4/5/2014   0  40   None
+4/5/2014   4/9/2014   0  70   None
+4/9/2014   4/12/2014  1  70   None
+4/12/2014  4/16/2014  0  50   Mettle+Oil
+4/16/2014  4/22/2014  0  100  None
+4/22/2014  4/29/2014  0  70   None
+4/29/2014  5/2/2014   0  30   None
+5/2/2014   5/9/2014   0  20   Flint+Oil
+5/9/2014   5/17/2014  0  20   None

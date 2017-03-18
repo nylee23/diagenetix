@@ -1,0 +1,25 @@
+# Features and Answers for two_rock
+# Column 1: Time (hours) in Temperature Range 0<T<60
+# Column 2: Time (hours) in Temperature Range 60<T<65
+# Column 3: Time (hours) in Temperature Range 65<T<70
+# Column 4: Time (hours) in Temperature Range 70<T<75
+# Column 5: Time (hours) in Temperature Range 75<T<80
+# Column 6: Time (hours) in Temperature Range 80<T<85
+# Column 7: Time (hours) in Temperature Range 85<T<90
+# Column 8: Time (hours) in Temperature Range 90<T<95
+# Column 9: Time (hours) in Temperature Range 95<T<1000
+# Column 10: Average Humidity
+# Column 11: Previous LAMP Result (1 = Detection)
+# Column 12: LAMP Result (1 = Detection)
+# 0<T<60 | 60<T<65 | 65<T<70 | 70<T<75 | 75<T<80 | 80<T<85 | 85<T<90 | 90<T<95 | 95<T<1000 | Humidity | Previous LAMP | LAMP Result
+ 104.75    21.50    23.25    18.50     0.00     0.00     0.00     0.00     0.00   65.206  0.0  0.0
+ 147.00    24.25    15.25     5.50     0.00     0.00     0.00     0.00     0.00   79.654  0.0  0.0
+ 160.25     6.25     1.50     0.00     0.00     0.00     0.00     0.00     0.00   89.215  0.0  0.0
+  70.25     1.75     0.00     0.00     0.00     0.00     0.00     0.00     0.00   85.414  0.0  0.0
+  58.25    11.50     6.25    12.00     6.50     1.50     0.00     0.00     0.00   78.737  0.0  0.0
+  58.00     9.25     2.50     2.25     0.00     0.00     0.00     0.00     0.00   90.560  0.0  1.0
+  73.25    15.25     7.50     0.00     0.00     0.00     0.00     0.00     0.00   86.292  1.0  0.0
+  93.25    24.75    14.25     9.75     2.00     0.00     0.00     0.00     0.00   77.678  0.0  0.0
+ 130.50    29.25     8.25     0.00     0.00     0.00     0.00     0.00     0.00   77.620  0.0  0.0
+  32.50     5.50     4.50     4.25     6.25    11.75     7.25     0.00     0.00   59.301  0.0  0.0
+ 108.50    36.50    20.50     2.50     0.00     0.00     0.00     0.00     0.00   77.734  0.0  0.0

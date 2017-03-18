@@ -1,0 +1,13 @@
+# LAMP Results from Two Rock data
+# Start Date | End Date | LAMP Results | Gubler-Thomas Index | Treatments
+3/11/2014  3/18/2014  0  20   None
+3/18/2014  3/26/2014  0  0    Kocide+Oil
+3/26/2014  4/2/2014   0  0    None
+4/2/2014   4/5/2014   0  0    None
+4/5/2014   4/9/2014   0  40   None
+4/9/2014   4/12/2014  1  0    Kocide+Oil
+4/12/2014  4/16/2014  0  0    None
+4/16/2014  4/22/2014  0  0    None
+4/22/2014  4/29/2014  0  0    Mettle+Oil
+4/29/2014  5/2/2014   0  20   None
+5/2/2014   5/9/2014   0  20   None

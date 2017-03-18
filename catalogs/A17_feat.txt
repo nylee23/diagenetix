@@ -1,0 +1,27 @@
+# Features and Answers for A17
+# Column 1: Time (hours) in Temperature Range 0<T<60
+# Column 2: Time (hours) in Temperature Range 60<T<65
+# Column 3: Time (hours) in Temperature Range 65<T<70
+# Column 4: Time (hours) in Temperature Range 70<T<75
+# Column 5: Time (hours) in Temperature Range 75<T<80
+# Column 6: Time (hours) in Temperature Range 80<T<85
+# Column 7: Time (hours) in Temperature Range 85<T<90
+# Column 8: Time (hours) in Temperature Range 90<T<95
+# Column 9: Time (hours) in Temperature Range 95<T<1000
+# Column 10: Average Leaf Wetness
+# Column 11: Average Humidity
+# Column 12: Treated with Any Treatment (1 = Treatment used)
+# Column 13: Previous LAMP Result (1 = Detection)
+# Column 14: LAMP Result (1 = Detection)
+# 0<T<60 | 60<T<65 | 65<T<70 | 70<T<75 | 75<T<80 | 80<T<85 | 85<T<90 | 90<T<95 | 95<T<1000 | Leaf Wetness | Humidity | Any Treatment | Previous LAMP | LAMP Result
+  31.50     3.25     5.50     4.25     4.25     3.25     9.00     7.25     3.75    0.000      nan  0.0  0.0  1.0
+   9.00     1.50     1.75     2.00     1.00     0.25     0.25     1.00     7.25    0.000      nan  0.0  1.0  1.0
+  14.25     3.50     4.75     1.25     0.25     0.00     0.00     0.00     0.00    0.000      nan  0.0  1.0  1.0
+  74.50    11.25     9.00     8.50    12.50     4.75    18.50    29.00    24.00    0.000      nan  0.0  1.0  1.0
+  12.00     1.00     1.00     1.00     0.50     0.25     0.25     2.25     5.75    0.000      nan  0.0  1.0  0.0
+  30.00     6.00     6.00     6.00     7.25     4.00     2.00     1.00     9.75    0.000      nan  0.0  0.0  0.0
+  21.50     1.75     2.00     2.00     5.25     5.75     0.75     2.25     6.75    0.000      nan  0.0  0.0  1.0
+  28.25     4.00     5.50     1.00     3.25     5.75     0.25     0.00     0.00    0.000      nan  0.0  1.0  0.0
+  33.00     2.25     3.25     3.25     2.25     6.75     7.50    13.00     0.75    0.000      nan  0.0  0.0  1.0
+  52.25     8.75     6.00     6.25     1.25     2.75     6.50    10.25     2.00    0.000      nan  0.0  1.0  1.0
+  29.50     2.00     2.75     3.50     2.75     6.00    20.25     4.25     1.00    0.000      nan  0.0  1.0  1.0

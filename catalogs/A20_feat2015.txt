@@ -1,0 +1,25 @@
+# Features and Answers for A20
+# Column 1: Time (hours) in Temperature Range 0<T<60
+# Column 2: Time (hours) in Temperature Range 60<T<65
+# Column 3: Time (hours) in Temperature Range 65<T<70
+# Column 4: Time (hours) in Temperature Range 70<T<75
+# Column 5: Time (hours) in Temperature Range 75<T<80
+# Column 6: Time (hours) in Temperature Range 80<T<85
+# Column 7: Time (hours) in Temperature Range 85<T<90
+# Column 8: Time (hours) in Temperature Range 90<T<95
+# Column 9: Time (hours) in Temperature Range 95<T<1000
+# Column 10: Average Humidity
+# Column 11: Previous LAMP Result (1 = Detection)
+# Column 12: LAMP Result (1 = Detection)
+# 0<T<60 | 60<T<65 | 65<T<70 | 70<T<75 | 75<T<80 | 80<T<85 | 85<T<90 | 90<T<95 | 95<T<1000 | Humidity | Previous LAMP | LAMP Result
+  41.50     4.75     5.00    11.00     4.50     5.00     0.25     0.00     0.00   62.463  0.0  0.0
+  15.00     1.50     2.25     4.50     0.75     0.00     0.00     0.00     0.00   69.049  0.0  1.0
+  16.00     3.75     4.25     0.00     0.00     0.00     0.00     0.00     0.00   49.465  1.0  0.0
+ 111.50    13.75    14.50    11.00    20.50    17.25     3.50     0.00     0.00   66.314  0.0  0.0
+  12.50     2.25     2.00     2.75     4.50     0.00     0.00     0.00     0.00   66.580  0.0  1.0
+  42.00     8.50     8.25     9.00     4.25     0.00     0.00     0.00     0.00   63.431  1.0  1.0
+  21.75     4.00     3.25     3.00     3.00     5.00     3.50     4.50     0.00   62.072  1.0  1.0
+  20.00     5.25     3.50     2.75     3.50     4.50     3.00     4.50     1.00   51.202  1.0  1.0
+  39.50     5.75     5.50     7.00     3.25     5.25     2.75     3.00     0.00   65.614  1.0  1.0
+  52.00     7.25     7.50    11.25    12.75     5.25     0.00     0.00     0.00   56.950  1.0  1.0
+  39.50     4.25     5.00     6.50    13.25     3.50     0.00     0.00     0.00   67.195  1.0  1.0
