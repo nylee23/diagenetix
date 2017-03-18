@@ -1,0 +1,220 @@
+#!/usr/bin/env python
+
+import datetime
+import urllib2
+import urlparse
+import collections
+import os
+import glob
+import subprocess
+
+
+degrib_bin = './degrib'
+degrib_args = '%(filename)s -C -lwlf %(bottom)f,%(left)f -uprt %(top)f,%(right)f -Csv -nMet -Unit e -msg %(item).1f -out stdout'
+
+data_sources = collections.OrderedDict((
+    ('hrrr', {
+        'url': 'http://www.ftp.ncep.noaa.gov/data/nccf/nonoperational/com/hrrr/prod/hrrr.%(yyyymmdd)s/',
+        'datafile': 'hrrr.t%(hh)sz.wrfsubhf%(ff)s.grib2',
+        'indexfile': 'hrrr.t%(hh)sz.wrfsubhf%(ff)s.grib2.idx',
+    }),
+    ('ruc', {
+        'url': 'http://nomads.ncdc.noaa.gov/data/rucanl/%(yyyymm)s/%(yyyymmdd)s/',
+        'datafile': 'rap_130_%(yyyymmdd)s_%(hh)s00_0%(ff)s.grb2',
+        'indexfile': 'rap_130_%(yyyymmdd)s_%(hh)s00_0%(ff)s.inv',
+    }),
+))
+
+
+def get_command(args):
+    for dt in generate_hours(args.start, args.end):
+        for url in generate_urls(args.source, dt):
+            urlobj = urlparse.urlparse(url)
+            filename = os.path.basename(urlparse.urlparse(url).path)
+
+            if args.list:
+                print url
+
+            else:
+                print 'downloading', filename, 'from', urlobj.netloc
+
+                rsp = urllib2.urlopen(url)
+                data = rsp.read()
+                rsp.close()
+
+                fp = open(os.path.join(args.dir, filename), 'wb')
+                fp.write(data)
+                fp.close()
+
+
+def lookup_command(args):
+    dummydt = datetime.datetime.now()
+    params = make_params(dummydt)
+
+    for k in params.viewkeys():
+        params[k] = '*'
+
+    pattern = data_sources[args.source]['indexfile'] % params
+    matches = glob.glob(os.path.join(args.dir, pattern))
+
+    if len(matches) == 0:
+        raise Exception('you must download some %s data first' % args.source)
+
+    with open(matches[0], 'r') as index:
+        for line in index:
+            toks = line.split(':')
+
+            if args.field is None or args.field == toks[3]:
+                print '%s (%s): %s' % (toks[3], toks[4], toks[0])
+
+
+def decode_command(args):
+    combined_data = collections.OrderedDict()
+
+    for dt in generate_hours(args.start, args.end):
+        filename = data_sources[args.source]['datafile'] % make_params(dt)
+
+        for code in args.code:
+            pipe = run_degrib(args, filename, code)
+
+            varname, dtstr = pipe.readline().split()[-1].split('_')
+
+            if dtstr not in combined_data:
+                combined_data[dtstr] = collections.OrderedDict()
+
+            timebin = combined_data[dtstr]
+
+            print >>sys.stderr, 'reading %s on %s' % (varname, dtstr)
+
+            for line in pipe:
+                lastdelim = line.rfind(',')
+
+                coords = line[0:lastdelim]
+
+                if coords not in timebin:
+                    timebin[coords] = []
+
+                value = float(line[lastdelim+1:].strip())
+
+                timebin[coords].append(value)
+
+            pipe.close()
+    
+    print '# Time,X,Y,Lat,Long,%s' % ','.join(map(lambda i: str(i), args.code))
+
+    for dtstr, timebin in combined_data.viewitems():
+        for coords, records in timebin.viewitems():
+            print dtstr, ',',
+            print coords.replace(' ', ''), ',',
+            print ','.join(map(lambda f: str(f), records))
+
+
+def run_degrib(args, filename, code):
+    cmd = '%s %s' % (
+        degrib_bin,
+        degrib_args % {
+            'filename': os.path.join(args.dir, filename),
+            'bottom': args.bl[0],
+            'left': args.bl[1],
+            'top': args.tr[0],
+            'right': args.tr[1],
+            'item': code,
+        })
+
+    print >>sys.stderr, 'executing:', cmd
+    pipe = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE).stdout
+
+    return pipe
+
+
+onehour = datetime.timedelta(0, 60*60, 0)
+
+def generate_hours(ds, de):
+    dc = ds.replace(minute=0, second=0, microsecond=0)
+
+    while dc < de:
+        yield dc
+
+        dc = dc + onehour
+
+    yield dc
+
+
+def generate_urls(source, *args, **kwargs):
+    params = make_params(*args, **kwargs)
+
+    sdef = data_sources[source]
+
+    base = sdef['url'] % params
+    datapart = sdef['datafile'] % params
+    indexpart = sdef['indexfile'] % params
+
+    yield os.path.join(base, datapart)
+    yield os.path.join(base, indexpart)
+
+
+def make_params(dt, forecast=0):
+    return {
+        'yyyymmdd': dt.strftime('%Y%m%d'),
+        'yyyymm': dt.strftime('%Y%m'),
+        'hh': dt.strftime('%H'),
+        'ff': '%02d' % forecast,
+    }
+
+
+if __name__ == '__main__':
+    import argparse
+    import dateutil.parser
+    import sys
+
+    utc_now = datetime.datetime.utcnow()
+    today_at = lambda h,m,s,u=0: utc_now.replace(
+        hour=h, minute=m, second=s, microsecond=u)
+
+    parser = argparse.ArgumentParser(
+        description='Weather data acquisition tool')
+    parser.add_argument(
+        '-dir', help='location for data files',
+        type=str, default='.', metavar='dir')
+    parser.add_argument(
+        '-start', help='beginning date/time',
+        type=dateutil.parser.parse, metavar='datetime',
+        default=today_at(0, 0, 0))
+    parser.add_argument(
+        '-end', help='ending date/time',
+        type=dateutil.parser.parse, metavar='datetime',
+        default=today_at(23, 59, 59))
+    parser.add_argument(
+        'source', help='data source %s' % str(data_sources.keys()),
+        choices=data_sources, default=data_sources.keys()[0], metavar='SOURCE')
+
+    subparsers = parser.add_subparsers(
+        dest='command', metavar='COMMAND')
+
+    get_parser = subparsers.add_parser(
+        'get', help='retrieve remote weather data')
+    get_parser.add_argument(
+        '-list', help='list URLs instead of downloading',
+        action='store_true', default=False)
+
+    lookup_parser = subparsers.add_parser(
+        'lookup', help='lookup datatype in local weather indexes')
+    lookup_parser.add_argument(
+        '-field', help='return code for given field',
+        type=str, metavar='id')
+
+    decode_parser = subparsers.add_parser(
+        'decode', help='decode local weather data')
+    decode_parser.add_argument(
+        '-bl', help='bottom left latitude and longitude',
+        type=float, nargs=2, metavar=('lat', 'lng'), required=True)
+    decode_parser.add_argument(
+        '-tr', help='top right latitude and longitude',
+        type=float, nargs=2, metavar=('lat', 'lng'), required=True)
+    decode_parser.add_argument(
+        'code', help='code specifying the data to decode',
+        type=float, nargs='+', metavar='CODE')
+
+    args = parser.parse_args()
+
+    getattr(sys.modules[__name__], '%s_command' % args.command)(args)
