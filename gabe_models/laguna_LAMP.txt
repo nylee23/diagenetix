@@ -1,0 +1,14 @@
+# LAMP Results from Laguna data
+# Start Date | End Date | LAMP Results | Gubler-Thomas Index | Treatments
+3/13/14  3/20/14  0  0    None
+3/20/14  3/27/14  0  0    None
+3/27/14  4/3/14   0  0    None
+4/3/14   4/10/14  0  20   None
+4/10/14  4/17/14  0  20   None
+4/17/14  4/24/14  0  60   Kocide+Oil
+4/24/14  4/29/14  0  60   None
+4/29/14  5/6/14   1  10   Sulfur+Sylcoat+Mettle
+5/6/14   5/8/14   1  0    None
+5/8/14   5/15/14  1  70   None
+5/15/14  5/22/14  1  100  None
+5/22/14  5/29/14  1  100  Sylcoat+Switch+Sovran
