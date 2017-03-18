@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Machine Learning Algorithms}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Weather based Models}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Dataset}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{Results}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{Tests with new data}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{Wind models}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Wind Simulation}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Linear Regression}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.3}{Results}{section.3}% 10
